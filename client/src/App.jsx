@@ -1,15 +1,16 @@
 import { useEffect, useState } from 'react'
+import { BASE_URL } from './config';
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
-import './App.css'
 import axios from 'axios'
+import './App.css'
 
 function App() {
   const [count, setCount] = useState(0)
   const [users, setUsers] = useState([])
 
   const fetchUsers = async () => {
-    const response = await axios.get('http://localhost:8080/api/users');
+    const response = await axios.get(`${BASE_URL}api/users`);
     setUsers(response.data.users);
   }
 
