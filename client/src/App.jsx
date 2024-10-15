@@ -7,7 +7,7 @@ function App() {
   const [users, setUsers] = useState([]);
 
   const fetchUsers = async () => {
-    const response = await axios.get(`${BASE_URL}${USERS.USERS}`);
+    const response = await axios.get(`${LOCAL_URL}${USERS.USERS}`);
     setUsers(response.data.users);
   };
 
