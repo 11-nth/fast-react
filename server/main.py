@@ -1,24 +1,32 @@
-import os
-from flask import Flask, jsonify
-from flask_cors import CORS
+from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 
-app = Flask(__name__)
-cors = CORS(app, origins='*')
+app = FastAPI()
 
-@app.route("/api/users", methods=['GET'])
-def users():
-    return jsonify(
-        {
-            'users': [
-                'eze',
-                'coi',
-                'chukoy',
-                'chooks',
-                'ezekiel'
-            ]
-        }
-    )
+# Enable CORS for all origins
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # Allow all origins
+    allow_credentials=True,
+    allow_methods=["*"],  # Allow all methods (GET, POST, etc.)
+    allow_headers=["*"],  # Allow all headers
+)
 
+@app.get("/api/users")
+def get_users():
+    return {
+        'users': [
+            'eze',
+            'coi',
+            'chukoy',
+            'chooks',
+            'ezekiel'
+        ]
+    }
+
+# This is not needed since Uvicorn handles running the server
+# But if you're running locally you can use the following:
 # if __name__ == '__main__':
-#     port = int(os.environ.get('PORT', 5000))
-#     app.run(host='0.0.0.0', port=port)
+#     import uvicorn
+#     uvicorn.run(app, host="0.0.0.0", port=int(os.environ.get("PORT", 8000)))
+
