@@ -24,9 +24,7 @@ def get_users():
         ]
     }
 
-# This is not needed since Uvicorn handles running the server
-# But if you're running locally you can use the following:
 # if __name__ == '__main__':
-#     import uvicorn
+#     import uvicorn, os
 #     uvicorn.run(app, host="0.0.0.0", port=int(os.environ.get("PORT", 8000)))
 
